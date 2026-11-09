@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMH Pharmacy Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #0284c7; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #0284c7; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background: #0369a1; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f1f5f9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>💊 RMH Pharmacy Inventory</h2>
+    
+    <div class="form-group">
+        <label>ওষুধের নাম:</label>
+        <input type="text" id="medName" placeholder="যেমন: Napa Extra">
+    </div>
+    <div class="form-group">
+        <label>পরিমাণ (Stock):</label>
+        <input type="number" id="medQty" placeholder="যেমন: ১০০">
+    </div>
+    <div class="form-group">
+        <label>মূল্য (টাকা):</label>
+        <input type="number" id="medPrice" placeholder="যেমন: ৫.০০">
+    </div>
+    <button onclick="addMedicine()">ওষুধ যোগ করুন</button>
+
+    <h3>মজুদ তালিকা</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ওষুধের নাম</th>
+                <th>পরিমাণ</th>
+                <th>মূল্য</th>
+            </tr>
+        </thead>
+        <tbody id="medTableBody">
+            <!-- ডাটা এখানে দেখাবে -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function addMedicine() {
+        const name = document.getElementById('medName').value;
+        const qty = document.getElementById('medQty').value;
+        const price = document.getElementById('medPrice').value;
+
+        if(!name || !qty || !price) {
+            alert('দয়া করে সব তথ্য পূরণ করুন!');
+            return;
+        }
+
+        const tableBody = document.getElementById('medTableBody');
+        const newRow = tableBody.insertRow();
+        
+        newRow.innerHTML = `<td>${name}</td><td>${qty}</td><td>${price} ৳</td>`;
+
+        document.getElementById('medName').value = '';
+        document.getElementById('medQty').value = '';
+        document.getElementById('medPrice').value = '';
+    }
+</script>
+
+</body>
+</html>
